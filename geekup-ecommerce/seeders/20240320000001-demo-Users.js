@@ -30,6 +30,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: 'customer2',
+        email: 'customer2@example.com',
+        phone: '0123456787',
+        password: null,
+        type: 'customer',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
   async down(queryInterface, Sequelize) {

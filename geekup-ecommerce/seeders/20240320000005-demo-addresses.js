@@ -23,6 +23,26 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        userId: 3,
+        province: 'TP.HCM',
+        district: 'Quận 4',
+        commune: 'Bình Trị Đông A',
+        address: '123 Nguyễn Văn Linh',
+        typeHousing: 'chung cư',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 4,
+        province: 'TP.HCM',
+        district: 'Quận 7',
+        commune: 'Bình Trị Đông B',
+        address: '456 Nguyễn Văn Linh',
+        typeHousing: 'chung cư',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
   async down(queryInterface, Sequelize) {
