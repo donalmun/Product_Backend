@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       categoryId: { type: DataTypes.INTEGER, allowNull: false },
       price: { type: DataTypes.DECIMAL(15, 2), allowNull: false },
       description: { type: DataTypes.STRING, allowNull: true },
+      model: { type: DataTypes.STRING, allowNull: true },
+      brand: { type: DataTypes.STRING, allowNull: true },
+      gender: { type: DataTypes.ENUM('Nam', 'Nữ', 'Unisex'), allowNull: true },
     },
     {}
   );

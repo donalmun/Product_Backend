@@ -37,6 +37,9 @@ module.exports = {
       },
       price: { type: Sequelize.DECIMAL(15, 2), allowNull: false },
       description: { type: Sequelize.STRING, allowNull: true },
+      model: { type: Sequelize.STRING, allowNull: true },
+      brand: { type: Sequelize.STRING, allowNull: true },
+      gender: { type: Sequelize.ENUM('Nam', 'Nữ', 'Unisex'), allowNull: true },
       createdAt: { type: Sequelize.DATE, allowNull: false },
       updatedAt: { type: Sequelize.DATE, allowNull: false },
     });
