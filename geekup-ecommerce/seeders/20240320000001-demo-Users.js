@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         name: 'customer1',
-        email: 'customer1@example.com',
+        email: 'nhatminh9704@gmail.com',
         phone: '0123456786',
         password: null,
         type: 'customer',
