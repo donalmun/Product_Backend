@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 require('dotenv').config();
 
 // Import routes
@@ -15,6 +17,9 @@ const app = express();
 app.use(cors()); // Cho phép CORS
 app.use(bodyParser.json()); // Parse JSON request body
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded form data
+
+// API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Basic route for testing
 app.get('/', (req, res) => {

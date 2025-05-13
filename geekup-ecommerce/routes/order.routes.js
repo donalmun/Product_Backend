@@ -3,32 +3,112 @@ const router = express.Router();
 const orderController = require('../controllers/order.controller');
 
 /**
- * @route POST /orders
- * @desc Tạo đơn hàng mới và xử lý thanh toán
- * @access Private
- * @body {Object} userId - ID của người dùng
- * @body {Object} addressId - ID của địa chỉ giao hàng
- * @body {Array} items - Danh sách sản phẩm trong đơn hàng
- * @body {Object} payment - Thông tin thanh toán
- * @returns {Object} - Thông tin đơn hàng đã tạo
+ * @swagger
+ * tags:
+ *   name: Orders
+ *   description: "Quản lý đơn hàng"
+ */
+
+/**
+ * @swagger
+ * /orders:
+ *   post:
+ *     summary: "Tạo đơn hàng mới"
+ *     tags: ["Orders"]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: integer
+ *               addressId:
+ *                 type: integer
+ *               items:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     productVariantId:
+ *                       type: integer
+ *                     quantity:
+ *                       type: integer
+ *               voucherCode:
+ *                 type: string
+ *               discountId:
+ *                 type: integer
+ *               fees:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     type:
+ *                       type: string
+ *                     amount:
+ *                       type: number
+ *     responses:
+ *       201:
+ *         description: "Đơn hàng đã tạo thành công"
+ *       400:
+ *         description: "Lỗi dữ liệu đầu vào"
  */
 router.post('/', orderController.createOrder);
 
 /**
- * @route GET /orders/:id
- * @desc Lấy thông tin chi tiết đơn hàng
- * @access Private
- * @param {Object} id - ID của đơn hàng
- * @returns {Object} - Thông tin chi tiết đơn hàng
+ * @swagger
+ * /orders/{id}:
+ *   get:
+ *     summary: "Lấy thông tin chi tiết đơn hàng"
+ *     tags: ["Orders"]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: "ID của đơn hàng"
+ *     responses:
+ *       200:
+ *         description: "Thông tin chi tiết đơn hàng"
+ *       404:
+ *         description: "Không tìm thấy đơn hàng"
  */
 router.get('/:id', orderController.getOrderById);
 
 /**
- * @route POST /orders/:orderId/pay
- * @desc Xác nhận thanh toán cho đơn hàng
- * @access Private
- * @param {Object} orderId - ID của đơn hàng
- * @returns {Object} - Thông tin đơn hàng đã xác nhận thanh toán
+ * @swagger
+ * /orders/{orderId}/pay:
+ *   post:
+ *     summary: "Xác nhận thanh toán cho đơn hàng"
+ *     tags: ["Orders"]
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: "ID của đơn hàng"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               payment:
+ *                 type: object
+ *                 properties:
+ *                   method:
+ *                     type: string
+ *                   details:
+ *                     type: object
+ *     responses:
+ *       200:
+ *         description: "Đơn hàng đã xác nhận thanh toán"
+ *       400:
+ *         description: "Lỗi xác nhận thanh toán"
  */
 router.post('/:orderId/pay', orderController.confirmPayment);
 
