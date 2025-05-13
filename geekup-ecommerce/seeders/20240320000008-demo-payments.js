@@ -6,8 +6,14 @@ module.exports = {
       {
         orderId: 1,
         method: 'credit_card',
-        status: 'paid',
+        status: 'completed',
         amount: 980000,
+        details: JSON.stringify({
+          cardNumber: '1234567890123456',
+          cardHolder: 'John Doe',
+          expirationDate: '2024-12-31',
+          cvv: '123',
+        }),
         createdAt: new Date(),
         updatedAt: new Date(),
       },

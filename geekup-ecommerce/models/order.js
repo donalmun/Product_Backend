@@ -6,7 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       addressId: { type: DataTypes.INTEGER, allowNull: false },
       total: { type: DataTypes.DECIMAL(15, 2), allowNull: false },
       status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(
+          'awaiting_payment',
+          'processing',
+          'paid',
+          'completed',
+          'cancelled',
+          'pending'
+        ),
         allowNull: false,
         defaultValue: 'pending',
       },

@@ -124,7 +124,14 @@ module.exports = {
       },
       total: { type: Sequelize.DECIMAL(15, 2), allowNull: false },
       status: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM(
+          'awaiting_payment',
+          'processing',
+          'paid',
+          'completed',
+          'cancelled',
+          'pending'
+        ),
         allowNull: false,
         defaultValue: 'pending',
       },
@@ -210,8 +217,13 @@ module.exports = {
         onDelete: 'CASCADE',
       },
       method: { type: Sequelize.STRING, allowNull: false },
-      status: { type: Sequelize.STRING, allowNull: false },
+      status: {
+        type: Sequelize.ENUM('pending', 'completed', 'failed', 'cancelled'),
+        allowNull: false,
+        defaultValue: 'pending',
+      },
       amount: { type: Sequelize.DECIMAL(15, 2), allowNull: false },
+      details: { type: Sequelize.JSON, allowNull: true },
       createdAt: { type: Sequelize.DATE, allowNull: false },
       updatedAt: { type: Sequelize.DATE, allowNull: false },
     });
